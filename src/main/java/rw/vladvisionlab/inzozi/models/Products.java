@@ -19,6 +19,7 @@ public class Products {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
     private String productName;
+    private String category;
     private String description;
     private int quantity;
     @Column(name = "price", precision = 10, scale = 2)
