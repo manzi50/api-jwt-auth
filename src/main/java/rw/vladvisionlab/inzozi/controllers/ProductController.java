@@ -11,35 +11,35 @@ import rw.vladvisionlab.inzozi.models.Products;
 
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/inventory")
 public class ProductController {
     
     @Autowired
     private ProductService productService;
 
-    @GetMapping
+    @GetMapping("/items")
     public List<Products> getAllProducts(){
         return productService.getAllProducts();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/items/detail/{id}")
     public Optional<Products> getProductById(@PathVariable Long id){
         return productService.getProductById(id);
     }
 
-    @PostMapping
+    @PostMapping("/items/create")
     public Products createProduct(@RequestBody Products product){
         return productService.saveProduct(product);
     }
     
-    @PutMapping("/{id}")
+    @PutMapping("/items/update/{id}")
     public Products updateProduct(@PathVariable Long id, @RequestBody Products product ){
         return productService.updateProduct(id, product);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/items/remove/{id}")
     public ResponseEntity<?> deleteProductById(@PathVariable Long id){
         productService.deleteProduct(id);
-        return ResponseEntity.ok("Product deleted successfully");
+        return ResponseEntity.ok("Item removed successfully");
     }
 }
