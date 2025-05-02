@@ -9,21 +9,20 @@ import rw.vladvisionlab.inzozi.dtos.RegisterRequest;
 import rw.vladvisionlab.inzozi.services.AuthenticationService;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/security")
 public class AuthenticationController {
-
+    
     @Autowired
     private AuthenticationService authenticationService;
-
-    @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterRequest request) {
+    
+    @PostMapping("/user/create")
+    public ResponseEntity<String> createAccount(@RequestBody RegisterRequest request) {
         authenticationService.register(request);
-        return ResponseEntity.ok("User registered successfully");
+        return ResponseEntity.ok("Account created successfully");
     }
     
-
-    @PostMapping("/login")  // Updated endpoint to match security config
-    public AuthenticationResponse authenticate(
+    @PostMapping("/user/authenticate")
+    public AuthenticationResponse verifyCredentials(
             @RequestBody AuthenticationRequest request
     ) {
         return authenticationService.authenticate(request);
