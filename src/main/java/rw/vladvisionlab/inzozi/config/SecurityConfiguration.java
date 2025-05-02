@@ -28,7 +28,7 @@ public class SecurityConfiguration {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll() // Public endpoints (e.g., login, register)
+                        .requestMatchers("/security/**").permitAll() // Public endpoints (e.g., login, register)
                         // .requestMatchers("/api/products/**").authenticated()
                         .anyRequest().authenticated() // All other endpoints need authentication
                 )
